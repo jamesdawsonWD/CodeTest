@@ -1,0 +1,95 @@
+/**
+    Animations for the svg cartoon
+    Grabs each moving element by its ID and applys the correct matrix transition
+**/
+#james {
+    animation: levitate 6s ease-in-out infinite;
+}
+
+#shadow {
+    animation: shadow-grow-shrink 6s ease-in-out infinite;
+}
+
+#docker-sphere {
+    animation: move-orb 6s ease-in-out;
+}
+#html-sphere {
+    animation: move-orb 6s ease-in-out;
+    animation-delay: 40s;
+}
+#sass-sphere {
+    animation: move-orb 6s ease-in-out;
+    animation-delay: 12s;
+}
+#js-sphere {
+    animation: move-orb 6s ease-in-out;
+    animation-delay: 18s;
+}
+#css-sphere {
+    animation: move-orb 6s ease-in-out;
+    animation-delay: 24s;
+}
+#node-sphere {
+    animation: move-orb 6s ease-in-out;
+    animation-delay: 30s;
+}
+#aws-sphere {
+    animation: move-orb 6s ease-in-out;
+    animation-delay: 36s;
+}
+
+// @keyframes move-orb {
+//     0% {
+//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, -127.249, 376.353);
+//     }
+
+//     50% {
+//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, 120.249, 400.353);
+//     }
+
+//     70% {
+//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, 120.249, 446.353);
+
+//     }
+
+//     90% {
+//         opacity:1;
+//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, 120.249, 446.353);
+//     }
+//     100% {
+//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, 120.249, 446.353);
+//         opacity: 0;
+//     }
+// }
+
+// @keyframes levitate {
+//     0% {
+//         transform: matrix(0.49059, 0, 0, 0.49059, 21.7252, -9.9246);
+
+//     }
+
+
+//     50% {
+//         transform: matrix(0.49059, 0, 0, 0.49059, 21.7252, -19.9246);
+
+//     }
+
+
+//     100% {
+//         transform: matrix(0.49059, 0, 0, 0.49059, 21.7252, -9.9246)
+//     }
+// }
+
+// @keyframes shadow-grow-shrink {
+//     0% {
+//         transform: scaleX(1) matrix(1, 0, 0, 0.931667, -120.927, -168.535)
+//     }
+
+//     50% {
+//         transform: scale(0.9) matrix(1, 0, 0, 0.931667, -100.927, -150.535)
+//     }
+
+//     100% {
+//         transform: scaleX(1) matrix(1, 0, 0, 0.931667, -120.927, -168.535)
+//     }
+// }

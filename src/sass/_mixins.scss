@@ -1,0 +1,34 @@
+@mixin button($color, $bg) {
+    color: $color;
+    background: $bg;
+    transition: all 0.3s ease 0s;
+    border:none;
+    font-family:'Montserrat', sans-serif;
+    font-size: 16pt;
+    min-height:50px;
+    min-width:300px;
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color;
+      background: darken($bg, 10%);
+      transition: all 0.8s ease 0s;
+    }
+  }
+  
+  @mixin opacity($opacity: 0.5) {
+    $opacityPercentage: ($opacity * 100);
+    filter: alpha(opacity=$opacityPercentage);
+    opacity: $opacity;
+  }
+
+  @mixin linear-gradient($color-one,$color-two,$degrees) {
+    background: -moz-linear-gradient($degrees, $color-one 0%, $color-two 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, $color-one), color-stop(100%, $color-two)); /* safari4+,chrome */
+    background: -webkit-linear-gradient($degrees, $color-one 0%, $color-two 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient($degrees, $color-one 0%, $color-two 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient($degrees, $color-one 0%, $color-two 100%); /* ie10+ */
+    background: linear-gradient($degrees, $color-one 0%, $color-two 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color-one', endColorstr='$color-two',GradientType=1 ); /* ie6-9 */
+  }
+  

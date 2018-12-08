@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Gamja+Flower|Open+Sans|Montserrat:900');
+@import './mixins';
+@import './animations';
+@import './containers';
+//@import './images';
+@import './utils';
+@import './colours';
+@import './buttons';
+@import './reset';
+
+body, html, .app-root, main {
+    width:100vw;
+    height:100vh;
+    background:$background;
+    overflow:hidden;
+}
+
+main {
+    background: $second-bg;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3vw;
+    letter-spacing: 9px;
+    color: white;
+    margin: 0;
+}
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
