@@ -1,5 +1,6 @@
 {
   "name": "super-awesome-code-test",
+  "author": "James Dawson",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

@@ -7,7 +7,7 @@ import { SvgJamesComponent } from './shared/svg-james/svg-james.component';
 import { CodeReviewComponent } from './components/code-review/code-review.component';
 import { CodeTestComponent } from './components/code-test/code-test.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { HttpClientModule } from '@angular/common/http'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [],
