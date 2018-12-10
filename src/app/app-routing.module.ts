@@ -5,12 +5,9 @@ import { CodeTestComponent } from './components/code-test/code-test.component';
 import { CodeReviewComponent } from './components/code-review/code-review.component';
 
 const routes: Routes = [
-  {
-    path: '', component: LandingPageComponent,
-  },
+  { path: '', component: LandingPageComponent},
   { path: 'code-test', component: CodeTestComponent },
   { path: 'code-review', component: CodeReviewComponent },
-
   { path: '**', redirectTo: '' },
 ];
 

@@ -8,16 +8,14 @@
 @import './buttons';
 @import './reset';
 
-body, html, .app-root, main {
+body, html, .app-root{
     width:100vw;
     height:100vh;
     background:$background;
     overflow-x:hidden;
 }
 
-main {
-    background: $second-bg;
-}
+
 
 h1 {
     font-family: 'Montserrat', sans-serif;

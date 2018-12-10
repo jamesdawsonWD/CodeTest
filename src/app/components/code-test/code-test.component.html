@@ -1,6 +1,14 @@
-<main>
-    <article class="card"*ngFor="let item of items">
-       sadassad
-       {{item}}
+<main class="grid-layout grid-center-children max-screen" *ngIf="items$ | async as items; else loading">
+    <article class="card box-shadow" *ngFor="let item of items.data">
+       <h1>{{item.eventType}}</h1>
     </article>
 </main>
+<ng-template #loading>
+    <main class="grid-layout grid-center-children max-screen text-center" >
+        <div>
+            <section class="circle-loader">
+            </section>
+            <h1>Loading stuff</h1>
+        </div>
+    </main>
+</ng-template>

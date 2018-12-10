@@ -1,9 +1,9 @@
 /**
     Animations for the svg cartoon
-    Grabs each moving element by its ID and applys the correct matrix transition
+    Grabs each moving element by its ID and applys the correct matrix transform
 **/
 #james {
-    animation: levitate 6s ease-in-out infinite;
+    animation: levitate 3s ease-in-out infinite;
 }
 
 #shadow {
@@ -11,85 +11,95 @@
 }
 
 #docker-sphere {
-    animation: move-orb 6s ease-in-out;
+    animation: move-orb 42s ease-in-out infinite;
 }
 #html-sphere {
-    animation: move-orb 6s ease-in-out;
-    animation-delay: 40s;
+    animation: move-orb 42s ease-in-out infinite;
+    animation-delay: 6s;
 }
 #sass-sphere {
-    animation: move-orb 6s ease-in-out;
+    animation: move-orb 42s ease-in-out infinite;
     animation-delay: 12s;
 }
 #js-sphere {
-    animation: move-orb 6s ease-in-out;
+    animation: move-orb 42s ease-in-out infinite;
     animation-delay: 18s;
 }
 #css-sphere {
-    animation: move-orb 6s ease-in-out;
+    animation: move-orb 42s ease-in-out infinite;
     animation-delay: 24s;
 }
 #node-sphere {
-    animation: move-orb 6s ease-in-out;
+    animation: move-orb 42s ease-in-out infinite;
     animation-delay: 30s;
 }
 #aws-sphere {
-    animation: move-orb 6s ease-in-out;
+    animation: move-orb 42s ease-in-out infinite;
     animation-delay: 36s;
 }
 
-// @keyframes move-orb {
-//     0% {
-//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, -127.249, 376.353);
-//     }
+@keyframes move-orb {
+    0% {
+        transform: matrix(-0.136519,-0.990637,0.990637,-0.136519,-25.1755,525.145);
+    }
+    15% {
+        transform: matrix(-0.136519,-0.990637,0.990637,-0.136519,225.1755,525.145);
 
-//     50% {
-//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, 120.249, 400.353);
-//     }
+    }
+    20% {
+        transform: matrix(-0.136519,-0.990637,0.990637,-0.136519,225.1755,600.145);
+    }
+    25% {
+        opacity:1;
+        transform: matrix(-0.136519,-0.990637,0.990637,-0.136519,225.1755,600.145);
+    }
+    27% {
+        transform: matrix(-0.136519,-0.990637,0.990637,-0.136519,-25.1755,525.145);
+        opacity: 0;
+    }
+    100% {
+        transform: matrix(-0.136519,-0.990637,0.990637,-0.136519,-25.1755,525.145);
+        opacity: 0;
+    }
+}
 
-//     70% {
-//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, 120.249, 446.353);
+@keyframes levitate {
+    0% {
+        transform: matrix(0.49059,0,0,0.49059,190.475,192.974)
 
-//     }
-
-//     90% {
-//         opacity:1;
-//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, 120.249, 446.353);
-//     }
-//     100% {
-//         transform: matrix(-0.429531, -0.903052, 0.903052, -0.429531, 120.249, 446.353);
-//         opacity: 0;
-//     }
-// }
-
-// @keyframes levitate {
-//     0% {
-//         transform: matrix(0.49059, 0, 0, 0.49059, 21.7252, -9.9246);
-
-//     }
-
-
-//     50% {
-//         transform: matrix(0.49059, 0, 0, 0.49059, 21.7252, -19.9246);
-
-//     }
+    }
 
 
-//     100% {
-//         transform: matrix(0.49059, 0, 0, 0.49059, 21.7252, -9.9246)
-//     }
-// }
+    50% {
+        transform: matrix(0.49059,0,0,0.49059,190.475,182.974)
 
-// @keyframes shadow-grow-shrink {
-//     0% {
-//         transform: scaleX(1) matrix(1, 0, 0, 0.931667, -120.927, -168.535)
-//     }
+    }
 
-//     50% {
-//         transform: scale(0.9) matrix(1, 0, 0, 0.931667, -100.927, -150.535)
-//     }
 
-//     100% {
-//         transform: scaleX(1) matrix(1, 0, 0, 0.931667, -120.927, -168.535)
-//     }
-// }
+    100% {
+        transform: matrix(0.49059,0,0,0.49059,190.475,192.974)
+    }
+}
+
+@keyframes shadow-grow-shrink {
+    0% {
+        transform: scaleX(1) matrix(1,0,0,0.931667,47.8233,54.3631)
+    }
+
+    50% {
+        transform: scaleX(0.9) matrix(1,0,0,0.931667,85.8233,54.3631)
+    }
+
+    100% {
+        transform: scaleX(1) matrix(1,0,0,0.931667,47.8233,54.3631)
+    }
+}
+@keyframes loader-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

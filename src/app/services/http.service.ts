@@ -19,7 +19,7 @@ export class HttpService {
     ));
   }
 
-  public getAll(data: any): Observable<any> {
+  public getAll(): Observable<any> {
     return this.http.get(`${this.apiUrl}`).pipe(
       map((response: any) => response
     ));

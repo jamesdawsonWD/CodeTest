@@ -74,3 +74,30 @@
     width: 100vw;
     height: 100vh;
 }
+
+/**
+    LOADING SPINNER
+**/
+$loader-size: 7em;
+
+.spinner-container {
+  display:flex;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+}
+
+.circle-loader {
+    
+  margin-bottom: $loader-size/3;
+  border: 5px solid rgba(0, 0, 0, 0.2);
+  border-left-color: white;
+  animation: loader-spin 1.2s infinite linear;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  justify-self:center;
+  border-radius: 50%;
+  width: $loader-size;
+  height: $loader-size;
+}
