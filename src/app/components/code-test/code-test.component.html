@@ -1,16 +1,10 @@
-<main class="grid-layout grid-center-children max-screen" *ngIf="items$ | async as items; else loading">
-    <button class="secondary-btn margin-top-20" [routerLink]="['/']">Back</button>
-    <article class="card box-shadow" *ngFor="let item of items.data">
-       <h1>{{item.eventType}}</h1>
-       <p>{{item.description}}</p>
-    </article>
+<main class="grid-layout grid-center-children max-screen">
+    <form novalidate [formGroup]="fileForm" (ngSubmit)="onSubmit(fileForm)">
+        <label id="lbl">Code </label>
+        <input type='file' formControlName="file" (change)="fileChanged($event)">
+        <button type="submit">Save</button>
+    </form>
 </main>
-<ng-template #loading>
-    <main class="grid-layout grid-center-children max-screen text-center" >
-        <div>
-            <section class="circle-loader">
-            </section>
-            <h1>Loading stuff</h1>
-        </div>
-    </main>
-</ng-template>
+
+<section class="items" *ngFor="let item of dataArr">
+</section>
