@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LandingPageComponent } from './landing-page.component';
+import { SvgJamesComponent } from '../../shared/svg-james/svg-james.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LandingPageComponent', () => {
   let component: LandingPageComponent;
@@ -8,9 +10,14 @@ describe('LandingPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingPageComponent ]
+      declarations: [
+        SvgJamesComponent,
+        LandingPageComponent,
+      ], imports: [
+        RouterTestingModule
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
