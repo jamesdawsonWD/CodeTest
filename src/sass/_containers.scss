@@ -27,4 +27,17 @@
     button {
       margin-right: 20px;
     }
-  }
+    
+}
+@media only screen and (max-width: 600px) {
+    .button-group {
+        display:grid;
+        & .primary-btn {
+            margin: 10px;
+            width: 90vw;
+        }
+    }
+    .card {
+        width:100vw;
+    }
+} 
