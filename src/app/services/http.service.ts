@@ -16,19 +16,19 @@ export class HttpService {
   constructor(private http: HttpClient) {
    }
 
-
+   /**
+    * post request to api gateway that will put a file into a S3 bucket
+    * @param file the file to be sent
+    */
   public putBucket(file): Observable<any> {
     return this.http.post(`${this.apiUrl}${file.name}`, file, {headers: this.AccessHeaders}).pipe(
       map((response: any) => response
     ));
   }
-  public getBucketByUrl(url: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getUrl`).pipe(
-      map((response: any) => response
-    ));
-  }
 
-  
+  /**
+   * Get signed URL for showing the bucket 
+   */
   public getSignedUrl(): Observable<any> {
     return this.http.get(`${this.apiUrl}/getUrl`).pipe(
       map((response: any) => response
