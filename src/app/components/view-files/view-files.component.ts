@@ -4,15 +4,20 @@ import { HttpService } from '../../services/http.service';
 @Component({
   selector: 'app-view-files',
   templateUrl: './view-files.component.html',
-  styleUrls: ['./view-files.component.scss']
 })
-export class ViewFilesComponent implements OnInit {
+export class ViewFilesComponent {
 
   public items$ = this.httpService.getAll();
 
-  constructor(private httpService: HttpService) { }
-  ngOnInit() {
+  constructor(private httpService: HttpService) {
+    this.getFile('out-declan.txt');
+  }
 
+  public getFile(file: string): void {
+    console.log(file, 'in view files');
+    this.httpService.getFile(file).subscribe((res) => {
+      window.location.href = res.data;
+    });
   }
 
 }

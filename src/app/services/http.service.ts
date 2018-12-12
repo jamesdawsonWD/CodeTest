@@ -30,12 +30,12 @@ export class HttpService {
 
   public putBucket(file): Observable<any> {
     console.log(file.name);
-    return this.http.post(`${this.apiUrl}${file.name}`, file, {headers: this.AccessHeaders}).pipe(
+    return this.http.post(`${this.apiUrl}/${file.name}`, file, {headers: this.AccessHeaders}).pipe(
       map((response: any) => response
     ));
   }
-  public getBucketByUrl(url: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getUrl`).pipe(
+  public getFile(file: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${file}`).pipe(
       map((response: any) => response
     ));
   }
