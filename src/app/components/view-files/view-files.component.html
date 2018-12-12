@@ -1,0 +1,8 @@
+<main class="grid-layout grid-center-children max-screen" *ngIf="items$ | async as items; else loading">
+  <button class="secondary-btn margin-top-20" [routerLink]="['/']">Back</button>
+  <article class="card box-shadow" *ngFor="let item of items.data">
+     <h1>{{item.eventType}}</h1>
+     <p>{{item.description}}</p>
+  </article>
+</main>
+<ng-template #loading>

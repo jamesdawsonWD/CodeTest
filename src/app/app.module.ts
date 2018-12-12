@@ -9,13 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ViewFilesComponent } from './components/view-files/view-files.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     SvgJamesComponent,
-    CodeTestComponent
+    CodeTestComponent,
+    ViewFilesComponent
   ],
   imports: [
     RouterModule,

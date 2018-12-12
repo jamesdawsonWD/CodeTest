@@ -9,7 +9,10 @@ import { map } from 'rxjs/operators';
 export class HttpService {
 
   private apiUrl = environment.apiUrl;
-
+  private AccessHeaders = {
+    'Access-Control-Allow-Credentials' : 'true',
+    'Access-Control-Allow-Origin': '*',
+};
   constructor(private http: HttpClient) {
    }
 
@@ -20,8 +23,28 @@ export class HttpService {
   }
 
   public getAll(): Observable<any> {
-    return this.http.get(`${this.apiUrl}`).pipe(
+    return this.http.get(`${this.apiUrl}/getObjects`).pipe(
       map((response: any) => response
     ));
   }
+
+  public putBucket(file): Observable<any> {
+    console.log(file.name);
+    return this.http.post(`${this.apiUrl}${file.name}`, file, {headers: this.AccessHeaders}).pipe(
+      map((response: any) => response
+    ));
+  }
+  public getBucketByUrl(url: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getUrl`).pipe(
+      map((response: any) => response
+    ));
+  }
+
+  
+  public getSignedUrl(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getUrl`).pipe(
+      map((response: any) => response
+    ));
+  }
+
 }

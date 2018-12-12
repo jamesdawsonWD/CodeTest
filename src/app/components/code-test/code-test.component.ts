@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import IMap from '../../models/map';
-import { BlobStreamer, bytes } from '../../helpers/FileStreamer';
+import { HttpService } from '../../services/http.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-code-test',
   templateUrl: './code-test.component.html',
@@ -12,8 +13,8 @@ import { BlobStreamer, bytes } from '../../helpers/FileStreamer';
 export class CodeTestComponent {
 
   public file: File;
-
-  public anagrams: IMap<Array<string>> = {};
+  public data;
+  public anagrams: IMap<string[]> = {};
   public fileForm = new FormGroup({
     file: new FormControl(),
   });
@@ -22,118 +23,113 @@ export class CodeTestComponent {
   // HELPERS
 
   // sorts strings, splits into array and transforms to lower case
-  private sortAndSplitWord = (word: string): Array<string> => word.split('').sort();
 
-  constructor() {
-
+  constructor(private httpService: HttpService, private router: Router) {
   }
 
   public fileChanged(e): void {
     this.file = e.target.files[0];
   }
 
-  public  onSubmit() {
+  public onSubmit(): void {
 
-    this.fileSize = this.file.size;
-    console.log(this.readFileByChunk(this.file));
+    this.httpService.putBucket(this.file).subscribe((response) => { console.log(response));
   }
 
 
-  public async readFileByChunk(file) {
+  // public readAndPost(reader) {
+  //   const enc = new TextDecoder('utf-8');
+  //   let result = [];
+  //   let charsReceived;
+  //   const self = this;
+  //   reader.read().then(function processText({ done, value }) {
 
-    // post to s3
+  //       // Result objects contain two properties:
+  //       // done  - true if the stream has already given you all its data.
+  //       // value - some data. Always undefined when done is true.
+  //       if (done) {
+  //         self.httpService.postItem(result).subscribe((res) => console.log(res));
+  //         return;
+  //       }
 
-    this.readBlockAsArrayBuffer();
-  }
+  //       charsReceived += value.length;
 
-  public readBlockAsArrayBuffer(length: bytes = this.chunkSize) {
+  //       // value for fetch streams is a Uint8Array and needs decoded
+  //       const chunk = enc.decode(new Uint8Array(value)).split('\n');
 
-    const enc = new TextDecoder('utf-8');
+  //       result = [...result, ...chunk];
 
-    fetch('./../../assets/example2.txt')
-      // Retrieve its body as ReadableStream
-      .then(response => {
-        const reader = response.body.getReader();
-        let result = [];
-        let charsReceived = 0;
+  //       // Read some more, and call this function again
+  //       reader.read().then(processText); // FIXME: This is shocking
 
-        reader.read().then(function processText({ done, value }) {
-          // Result objects contain two properties:
-          // done  - true if the stream has already given you all its data.
-          // value - some data. Always undefined when done is true.
-          if (done) {
-            console.log('Stream complete');
-            console.log(result);
-            return;
-          }
-          // value for fetch streams is a Uint8Array
-          charsReceived += value.length;
-          const chunk = enc.decode(new Uint8Array(value)).split('\n');
-          result = [...result, ...chunk];
+  //     });
+  //   }
 
-          
-          // Read some more, and call this function again
-          return reader.read()
-          .then(processText);
-        }) ;
-        return result;
-      }
+  // public readFileByChunk(file) {
+  //   this.fetchAndReadFile()
+  //     .then((response) => response.body.getReader())
+  //     .then((reader) => this.readAndPost(reader));
+  // }
 
-      )
-  }
+  // public fetchAndReadFile() {
+  //   return fetch('./../../assets/example2.txt');
+  // }
 
+  // /**
+  //  *  Parses over the passed in chunk and eqaluates each new line
+  //  *  If the line is an anagram of a key in the map then as it to that keys value
+  //  *  If the value does not map to a key then we add a new key called that value
+  //  * @param chunk 
+  //  */
+  // private parseChunkToAnagramMap(chunk: string[]): IMap<string[]> {
+  //   const map: IMap<string[]> = {};
 
+  //   for (const line of chunk) {
 
-  private parseChunkToAnagramMap(chunk: Array<string>): IMap<Array<string>> {
-    const map: IMap<Array<string>> = {};
+  //     if (!Object.keys(map).length) { map[line] = []; continue; }
 
-    for (const line of chunk) {
+  //     for (const key of Object.keys(map)) {
+  //       if (this.isAnagram(key, line)) { map[key] = [...map[key], line]; break; }
+  //       else { map[line] = []; }
+  //     }
+  //   }
+  //   return map;
+  // }
 
-      if (!Object.keys(map).length) { map[line] = []; continue; }
-
-      for (const key of Object.keys(map)) {
-        if (this.isAnagram(key, line)) { map[key] = [...map[key], line]; break; }
-        else { map[line] = []; }
-      }
-    }
-
-    return map;
-  }
-
-  /**
-   * Compares two strings and eqaluates if they are an anagram of eachother
-   * @param string1 the first string
-   * @param string2 the second string
-   * @returns True or false depending on if it passed
-   */
-  private isAnagram(string1: string, string2: string): boolean {
+  // /**
+  //  * Compares two strings and evaluates if they are an anagram of eachother
+  //  * @param string1 the first string
+  //  * @param string2 the second string
+  //  * @returns True or false depending on if anagram
+  //  */
+  // private isAnagram(string1: string, string2: string): boolean {
 
 
-    const str1 = this.sortAndSplitWord(string1);
-    const str2 = this.sortAndSplitWord(string2);
+  //   const str1 = this.sortAndSplitWord(string1);
+  //   const str2 = this.sortAndSplitWord(string2);
 
-    // if strings are not equal length they are not anagrams
-    if (string1.length !== string2.length) { return false; }
+  //   // if strings are not equal length they are not anagrams
+  //   if (string1.length !== string2.length) return false;
 
-    // create letterMap that will count the numbers of letters
-    const letterMap = {};
+  //   // create letterMap that will count the numbers of letters
+  //   const letterMap = {};
 
-    // parse through first string, if letter exists - increment
-    for (const letter of str1) {
-      letterMap[letter] = Object.keys(letterMap).includes(letter) ? letterMap[letter] += 1 : 1;
-    }
+  //   // parse through first string, if letter exists - increment
+  //   for (const letter of str1) {
+  //     letterMap[letter] = Object.keys(letterMap).includes(letter) ? letterMap[letter]++ : 1;
+  //   }
 
-    // parse through second string, if letter exists - decrement
-    for (const letter of str2) {
-      letterMap[letter] = Object.keys(letterMap).includes(letter) ? letterMap[letter] -= 1 : -1;
-    }
+  //   // parse through second string, if letter exists - decrement
+  //   for (const letter of str2) {
+  //     letterMap[letter] = Object.keys(letterMap).includes(letter) ? letterMap[letter]-- : -1;
+  //   }
 
-    // if any key has a value less than zero it is not an anagram
-    for (const key in letterMap) {
-      if (letterMap[key] < 0) { return false; }
-    }
-    return true;
-  }
+  //   // if any key has a value less than zero it is not an anagram
+  //   for (const key in letterMap) {
+  //     if (letterMap[key] < 0) { return false; }
+  //   }
+  //   return true;
+  // }
 
 
 }

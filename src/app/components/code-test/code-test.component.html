@@ -1,8 +1,9 @@
-<main class="grid-layout grid-center-children max-screen">
+<main class="grid-layout grid-center-children max-screen text-center">
     <form novalidate [formGroup]="fileForm" (ngSubmit)="onSubmit(fileForm)">
-        <label id="lbl">Code </label>
-        <input type='file' formControlName="file" (change)="fileChanged($event)">
-        <button type="submit">Save</button>
+        <h1 id="lbl" class="margin-bottom-20">Upload a File!</h1>
+        <input  type='file' class="inputFile" formControlName="file" (change)="fileChanged($event)">
+        <button class="primary-btn" type="submit">Save</button>
+        <h3>It will be pushed to an s3 bucket and we will sort those pesky anagrams for you :D</h3>
     </form>
 </main>
 
