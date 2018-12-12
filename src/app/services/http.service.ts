@@ -16,35 +16,25 @@ export class HttpService {
   constructor(private http: HttpClient) {
    }
 
-  public postItem(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, data).pipe(
-      map((response: any) => response
-    ));
-  }
-
-  public getAll(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getObjects`).pipe(
-      map((response: any) => response
-    ));
-  }
-
+   /**
+    * post request to api gateway that will put a file into a S3 bucket
+    * @param file the file to be sent
+    */
   public putBucket(file): Observable<any> {
     console.log(file.name);
     return this.http.post(`${this.apiUrl}/${file.name}`, file, {headers: this.AccessHeaders}).pipe(
       map((response: any) => response
     ));
   }
-  public getFile(file: string): Observable<any> {
+  /**
+   * 
+   * @param file the name of the file that you want to retrieve
+   */
+  public getFileSignedUrl(file: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${file}`).pipe(
       map((response: any) => response
     ));
   }
 
-  
-  public getSignedUrl(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getUrl`).pipe(
-      map((response: any) => response
-    ));
-  }
 
 }

@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import IMap from '../../models/map';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../services/http.service';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-code-test',
   templateUrl: './code-test.component.html',
@@ -12,14 +10,12 @@ import { Router } from '@angular/router';
 export class CodeTestComponent {
 
   public file: File;
-  public data;
-  public anagrams: IMap<string[]> = {};
-  public fileForm = new FormGroup({
-    file: new FormControl(),
+  public form = new FormGroup({
+    file: new FormControl ('', [Validators.required])
   });
 
 
-  constructor(private httpService: HttpService, private router: Router) {
+  constructor(private httpService: HttpService) {
   }
 
   public fileChanged(e): void {
@@ -27,8 +23,7 @@ export class CodeTestComponent {
   }
 
   public onSubmit(): void {
-
-    this.httpService.putBucket(this.file).subscribe((response) => { console.log(response));
+    this.httpService.putBucket(this.file).subscribe();
   }
 
 }

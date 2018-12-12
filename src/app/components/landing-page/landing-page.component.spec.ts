@@ -13,7 +13,8 @@ describe('LandingPageComponent', () => {
       declarations: [
         SvgJamesComponent,
         LandingPageComponent,
-      ], imports: [
+      ],
+      imports: [
         RouterTestingModule
       ],
     })
