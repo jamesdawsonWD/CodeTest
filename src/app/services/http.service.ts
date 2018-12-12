@@ -16,20 +16,8 @@ export class HttpService {
   constructor(private http: HttpClient) {
    }
 
-  public postItem(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, data).pipe(
-      map((response: any) => response
-    ));
-  }
-
-  public getAll(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getObjects`).pipe(
-      map((response: any) => response
-    ));
-  }
 
   public putBucket(file): Observable<any> {
-    console.log(file.name);
     return this.http.post(`${this.apiUrl}${file.name}`, file, {headers: this.AccessHeaders}).pipe(
       map((response: any) => response
     ));

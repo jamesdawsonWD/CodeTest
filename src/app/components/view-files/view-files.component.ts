@@ -8,7 +8,7 @@ import { HttpService } from '../../services/http.service';
 })
 export class ViewFilesComponent implements OnInit {
 
-  public items$ = this.httpService.getAll();
+  // public items$ = this.httpService.getAll();
 
   constructor(private httpService: HttpService) { }
   ngOnInit() {
