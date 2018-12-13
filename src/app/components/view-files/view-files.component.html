@@ -1,8 +1,30 @@
-<main class="grid-layout grid-center-children max-screen" *ngIf="items$ | async as items; else loading">
-  <button class="secondary-btn margin-top-20" [routerLink]="['/']">Back</button>
-  <article class="card box-shadow" *ngFor="let item of items.data">
-     <h1>{{item.eventType}}</h1>
-     <p>{{item.description}}</p>
-  </article>
+<main *ngIf="store.file; else noFile" class="grid-layout grid-center-children max-screen text-center">
+  <ng-container *ngIf="display; else loading">
+    <section class="text-center" >
+      <h1 class="margin-bottom-20">Download your File!</h1>
+      <h3>You may have to wait a bit longer if it was a big chunky file</h3>
+      <div class="button-group margin-top-50 ">
+        <button class="secondary-btn" [routerLink]="['/upload']">Upload again</button>
+        <button class="primary-btn" (click)="getFile(store.file.name)">{{store.file.name}}</button>
+      </div>
+    </section>
+  </ng-container>
 </main>
 <ng-template #loading>
+    <main class="grid-layout grid-center-children max-screen text-center" >
+        <div>
+            <section class="circle-loader">
+            </section>
+            <h1>Loading stuff</h1>
+        </div>
+    </main>
+</ng-template>
+<ng-template #noFile>
+    <main class="grid-layout grid-center-children max-screen text-center" >
+        <div>
+          <h1>You need a file!</h1>
+          <h3>You can upload one below, we got your back!</h3>
+          <button class="primary-btn margin-top-20" [routerLink]="['/upload']">Upload File</button>
+        </div>
+    </main>
+</ng-template>

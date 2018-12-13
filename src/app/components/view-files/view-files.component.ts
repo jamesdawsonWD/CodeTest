@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
+import { StoreService } from '../../services/store.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-files',
@@ -7,16 +9,20 @@ import { HttpService } from '../../services/http.service';
 })
 export class ViewFilesComponent {
 
-  // public items$ = this.httpService.getAll();
-
-  constructor(private httpService: HttpService) {
-    this.getFile('out-declan.txt');
+  public display = false;
+  constructor(
+    private httpService: HttpService,
+    public store: StoreService,
+    public router: Router
+  ) {
+    setTimeout( () => { this.display = true; }, 10000); // yes... this is a fake progress bar...
   }
 
+
   public getFile(file: string): void {
-    console.log(file, 'in view files');
-    this.httpService.getFile(file).subscribe((res) => {
-      window.location.href = res.data;
+    this.httpService.getFileSignedUrl(file.replace('in-', 'out-')).subscribe((res) => {
+      window.open(res.data, '_blank');
+      this.router.navigate(['/']);
     });
   }
 

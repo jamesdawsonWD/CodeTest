@@ -12,26 +12,26 @@ export class HttpService {
   private AccessHeaders = {
     'Access-Control-Allow-Credentials' : 'true',
     'Access-Control-Allow-Origin': '*',
-};
+  };
   constructor(private http: HttpClient) {
    }
 
    /**
     * post request to api gateway that will put a file into a S3 bucket
     * @param file the file to be sent
+    * @return an observable with the http response mapped
     */
   public putBucket(file): Observable<any> {
-    console.log(file.name);
-    return this.http.post(`${this.apiUrl}/${file.name}`, file, {headers: this.AccessHeaders}).pipe(
+    return this.http.post(`${this.apiUrl}/in-${file.name}`, file).pipe(
       map((response: any) => response
     ));
   }
   /**
-   * 
-   * @param file the name of the file that you want to retrieve
+   * @param fileName the name of the file that you want to retrieve
+   * @return an observable with the http response mapped 
    */
-  public getFileSignedUrl(file: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${file}`).pipe(
+  public getFileSignedUrl(fileName: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/out-${fileName}`).pipe(
       map((response: any) => response
     ));
   }

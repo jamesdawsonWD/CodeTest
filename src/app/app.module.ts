@@ -10,6 +10,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewFilesComponent } from './components/view-files/view-files.component';
+import { StoreService } from './services/store.service';
+import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ViewFilesComponent } from './components/view-files/view-files.component
     AppRoutingModule,
     ReactiveFormsModule
   ],
+  providers: [StoreService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

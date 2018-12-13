@@ -1,10 +1,10 @@
 <main class="grid-layout grid-center-children max-screen text-center">
-    <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(fileForm)">
+    <h3 *ngIf="error">{{error}}</h3>
+    <form novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
         <h1 class="margin-bottom-20">Upload a File!</h1>
         <input  type='file' class="inputFile" formControlName="file" (change)="fileChanged($event)">
-        <button class="primary-btn" [disabled]="form.status !== 'VALID'" type="submit">Send!</button>
-        <h3>It will be pushed to an s3 bucket and we will sort those pesky anagrams for you :D</h3>
+        <button class="primary-btn" [disabled]="form.status !== 'VALID' && loading" type="submit">Send!</button>
+        <h3>It will be pushed to the cloud and we will sort those pesky anagrams for you :D</h3>
     </form>
 </main>
-<section class="items" *ngFor="let item of dataArr">
-</section>
+

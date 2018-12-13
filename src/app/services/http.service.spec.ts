@@ -15,8 +15,4 @@ describe('HttpService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should be return a response from the lambda', inject([HttpService], (service: HttpService) => {
-    expect(service.getSignedUrl).toBeTruthy();
-  }));
-
 });
