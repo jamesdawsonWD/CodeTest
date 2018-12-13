@@ -1,27 +1,62 @@
-# SuperAwesomeCodeTest
+# Super Awesome Code Test 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+### @author James dawson
 
-## Development server
+## Deploying the front end
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Navigate to src folder and run 
 
-## Code scaffolding
+```
+npm i && ng serve
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+If you want a production build with aot, no source maps etc
 
-## Build
+```
+npm run build 
+```
+## Deploying the serverless infastructure
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This is currently deployed for you.
+
+However, if you would like to deploy this serverless infastructure on your own AWS account you can do so.
+
+Firstly you will need to install 
+
+```
+npm install -g aws-cli
+```
+
+then run 
+
+```
+aws configure
+```
+
+and follow the steps adding in your secret and access key and this should build the exact instance that we have currently deployed on your own AWS account.
+
+**NOTE:** on this current version, we were having an issue getting the s3 to trigger and had to manually do so. This is to be fixed in the next version.
+
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Front end: navigate into src 
 
-## Running end-to-end tests
+```
+npm run test
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Server: navigate to server
 
-## Further help
+```
+npm run test
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Known issues on the version
+
+* Bucket triggering and processing file and then on next trigger a failure to write error appears, need more time for debugging. Believe that the bucket my be triggering again when the findAnagrams function is writing back into the bucket
+* In serverless.yaml at the bottom with recourses - s3 is being created but the trigger to findAnagrams is not being added in deploy. Manually adding it is the current work around.
+
+
+
+

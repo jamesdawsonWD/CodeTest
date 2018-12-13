@@ -2,7 +2,8 @@
   <ng-container *ngIf="display; else loading">
     <section class="text-center" >
       <h1 class="margin-bottom-20">Download your File!</h1>
-      <h3>You may have to wait a bit longer if it was a big chunky file</h3>
+      <h3>Make sure you ALLOW POPUPS to download the file</h3>
+      <h5>And you may need to wait a wee bit longer for very large files</h5>
       <div class="button-group margin-top-50 ">
         <button class="secondary-btn" [routerLink]="['/upload']">Upload again</button>
         <button class="primary-btn" (click)="getFile(store.file.name)">{{store.file.name}}</button>
