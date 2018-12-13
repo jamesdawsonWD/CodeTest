@@ -19,9 +19,14 @@ export class ViewFilesComponent {
   }
 
 
+  /**
+   *  Subscribes to get fileSignedUrl obseravle in http service
+   *  if there is not an error it will pop a message and then navigate back to the landing-page
+   * @param file the name of the file to be get
+   */
   public getFile(file: string): void {
     this.httpService.getFileSignedUrl(file.replace('in-', 'out-')).subscribe((res) => {
-      window.open(res.data, '_blank');
+      if (!res.error) window.open(res.data, '_blank');
       this.router.navigate(['/']);
     });
   }

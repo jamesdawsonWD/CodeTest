@@ -28,7 +28,7 @@ export class HttpService {
   }
   /**
    * @param fileName the name of the file that you want to retrieve
-   * @return an observable with the http response mapped 
+   * @return an observable with the http response mapped
    */
   public getFileSignedUrl(fileName: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/out-${fileName}`).pipe(

@@ -2,6 +2,14 @@
 
 ### @author James dawson
 
+# Known issues on the version
+
+* Bucket triggering and processing file and then on next trigger a failure to write error appears, need more time for debugging. Believe that the bucket my be triggering again when the findAnagrams function is writing back into the bucket
+* In serverless.yaml at the bottom with recourses - s3 is being created but the trigger to findAnagrams is not being added in deploy. Manually adding it is the current work around.
+
+
+
+
 ## Deploying the front end
 
 Navigate to src folder and run 
@@ -51,12 +59,6 @@ Server: navigate to server
 ```
 npm run test
 ```
-
-# Known issues on the version
-
-* Bucket triggering and processing file and then on next trigger a failure to write error appears, need more time for debugging. Believe that the bucket my be triggering again when the findAnagrams function is writing back into the bucket
-* In serverless.yaml at the bottom with recourses - s3 is being created but the trigger to findAnagrams is not being added in deploy. Manually adding it is the current work around.
-
 
 
 
